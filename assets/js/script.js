@@ -1,12 +1,14 @@
 
 var score = 0
-var startTime = 10
+var startTime = 30
 var newTime = startTime
 var startBtn = document.querySelector('#startBtn')
 var timerEl = document.querySelector('#timer')
 var scoreEl = document.querySelector('#score')
 var questionEl = document.querySelector('#questions')
 scoreEl.innerText = 'Score: ' + score
+
+var currentIndex = 0
 
 var questions = [
     {   prompt: 'Inside which HTML element do we put the JavaScript?', 
@@ -64,29 +66,34 @@ console.log(questions)
 
 
 // check if the answer given by user matches question answer
-// function checkAnswer() {
-//     var answer = questions[i].answer
-//     var userInput = 
-//     if (answer ===  userInput) {
-//         score++
-//     } else {
-//         newTime -= 5
-//     }
-// }
+function checkAnswer(event) {
+    var answer = questions[currentIndex].answer
+    console.log(answer)
+    var userChoice = event.target
+    
+    console.log(userChoice)
+    if (answer === userChoice) {
+        scoreEl.innerText = 'Score: ' + score++
+    } else {
+        newTime -= 5
+    }
+    currentIndex++ 
+    questionEl.innerText = ''
+    createQuestion() 
+}
 
 
 
 
-function createQuestion(currentIndex) {
+function createQuestion() {
     var question = document.createElement('li')
     var prompt = questions[currentIndex].prompt
     var promptEl = document.createElement('h3')
     promptEl.innerText = prompt
     questionEl.appendChild(promptEl)
-    console.log(prompt)
-    // question.innerText = questions[currentIndex].prompt
     for (var i=0; i < 3; i++) {
         var button = document.createElement('button')
+        button.addEventListener('click', checkAnswer)
         var question = questions[currentIndex].choices[i]
         button.innerText = question
         questionEl.appendChild(button)
