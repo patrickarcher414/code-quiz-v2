@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    text-decoration: none;
+  }
+:root {
+    --main-color: #a9c1de;
+    --accent-color: #ab82ad;
+}
+.flex {
+    display: flex;
+}
+.align-center {
+    align-items: center;
+}
+.space-around {
+    justify-content: space-around;
+}
+.center {
+    justify-content: center;
+}
+.bg-main {
+    background-color: var(--main-color);
+}
+.accent {
+    background-color: var(--accent-color);
+}
+.margin-big {
+    margin: 20px;
+}
+  
