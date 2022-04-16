@@ -8,62 +8,84 @@ var scoreEl = document.querySelector('#score')
 var questionEl = document.querySelector('#questions')
 scoreEl.innerText = 'Score: ' + score
 
-function createQuestion() {
-
-}
-
 var questions = [
     {   prompt: 'Inside which HTML element do we put the JavaScript?', 
         answer: '<script>',
-        choices: (
+        choices: [
         '<script>',
         '<js>',
-        '<javascript>') 
+        '<javascript>'] 
     },
     {  prompt: 'Where is the correct place to insert the script tag?', 
         answer: 'The bottom of the body section',
-        choices: (
+        choices: [
         'Either the <head> section, or the <body> section',
         'The <head> section',
-        'The bottom of the <body> section') 
+        'The bottom of the <body> section'] 
     },
     {  prompt: 'What is the correct syntax for referring to an external script called "xxx.js"?', 
         answer: "<script src='xxx.js'>",
-        choices: (
+        choices: [
         "<script name='xxx.js'>",
         "<script href='xxx.js'>",
-        "<script src='xxx.js'>") 
+        "<script src='xxx.js'>"]
     },
     {  prompt: 'How do you write "Hello World" in an alert box?', 
     answer: "alert('Hello World')",
-    choices: (
+    choices: [
     "msg('Hello World')",
     "alert('Hello World')",
-    "alertBox('Hello World')") 
+    "alertBox('Hello World')"]
     },
     {  prompt: 'How do you create a function in JavaScript?', 
     answer: 'function myFunction()',
-    choices: (
+    choices: [
     'function myFunction()',
     'function = myFunction()',
-    'function:myFunction()') 
+    'function:myFunction()'] 
     },
     {  prompt: 'How do you call a function named "myFunction"?', 
     answer: 'myFunction()',
-    choices: (
+    choices: [
     'call function myFunction()',
     'myFunction()',
-    'call myFunction()') 
+    'call myFunction()'] 
     },
     {  prompt: 'How to write an IF statement in JavaScript?', 
     answer: 'if (i== 5)',
-    choices: (
+    choices: [
     'if i == 5 then',
     'if i=5',
-    'if (i== 5)') 
+    'if (i== 5)'] 
     }
 ]
+
 console.log(questions)
+
+// check if the answer given by user matches question answer
+function checkAnswer() {
+    var answer = questions[i].answer
+    var userInput = 
+    if (answer ===  userInput) {
+        score++
+    } else {
+        newTime -= 5
+    }
+}
+
+
+
+
+function createQuestion(currentIndex) {
+    var question = document.createElement('li')
+    question.innerText = questions[currentIndex].prompt
+    for (var i=0; i < 4; i++) {
+        var button = document.createElement('button')
+        var question = questions[currentIndex].choices[i]
+        button.innerText = question
+        questionEl.appendChild(button)
+    }
+}
 
 function gameOver() {
     var initialsPrompt = prompt('Enter your initials to save your score:')
@@ -86,6 +108,7 @@ function updateTimer() {
 
 function startQuiz() {
     updateTimer()
+    createQuestion(0)
 }
 
 startBtn.addEventListener('click', startQuiz)
