@@ -62,24 +62,30 @@ var questions = [
 
 console.log(questions)
 
+
 // check if the answer given by user matches question answer
-function checkAnswer() {
-    var answer = questions[i].answer
-    var userInput = 
-    if (answer ===  userInput) {
-        score++
-    } else {
-        newTime -= 5
-    }
-}
+// function checkAnswer() {
+//     var answer = questions[i].answer
+//     var userInput = 
+//     if (answer ===  userInput) {
+//         score++
+//     } else {
+//         newTime -= 5
+//     }
+// }
 
 
 
 
 function createQuestion(currentIndex) {
     var question = document.createElement('li')
-    question.innerText = questions[currentIndex].prompt
-    for (var i=0; i < 4; i++) {
+    var prompt = questions[currentIndex].prompt
+    var promptEl = document.createElement('h3')
+    promptEl.innerText = prompt
+    questionEl.appendChild(promptEl)
+    console.log(prompt)
+    // question.innerText = questions[currentIndex].prompt
+    for (var i=0; i < 3; i++) {
         var button = document.createElement('button')
         var question = questions[currentIndex].choices[i]
         button.innerText = question
@@ -89,7 +95,10 @@ function createQuestion(currentIndex) {
 
 function gameOver() {
     var initialsPrompt = prompt('Enter your initials to save your score:')
-    if (initialsPrompt !== '') {
+    if (initialsPrompt === null) {
+        location.reload()
+    }
+    else if (initialsPrompt !== '') {
         localStorage.setItem('initials', JSON.stringify(initialsPrompt))
     }
     location.reload()
